@@ -95,7 +95,6 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 ```
 
 ### Advanced Example in a React Project
