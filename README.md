@@ -83,11 +83,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <button ref={buttonRef}>Toggle Popover</button>
       {target && (
-        <PopoverComponent target={target} content="Hello, Popover!" position="top">
-          {/* Additional JSX or components */}
+        <PopoverComponent target={target} content="Hello, Popover!" position='bottom'>
+          <></> {/* Empty fragment as children */}
         </PopoverComponent>
       )}
     </div>
@@ -95,6 +95,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 ```
 
 ### Advanced Example in a React Project
