@@ -1,34 +1,35 @@
-# Popover API JS
+# Popover JS
 
-A lightweight JavaScript/TypeScript library for creating and managing popovers in web applications.
+A lightweight JavaScript/TypeScript library for creating and managing popovers in web applications. Compatible with React.
 
 ## Features
 
-- Easy to integrate with any JS/TS project
+- Easy integration with any JS/TS project
 - Supports positioning popovers at the top, bottom, left, or right of the target element
 - Simple API for showing, hiding, and toggling popovers
+- React component for seamless React integration
 
 ## Installation
 
 Install the package via npm:
 
 ```bash
-npm install popover-api-js
+npm install popover-js
 ```
 
 ## Usage
 
 ### Basic Example
 
-Import the Popover class and create a new popover instance:
+Import the `Popover` class and create a new popover instance:
 
 ```javascript
-import { Popover } from 'popover-api-js';
+import { Popover } from 'popover-js';
 
 const button = document.querySelector('#myButton');
 const popover = new Popover({
   target: button,
-  content: 'Hello, Popover!'
+  content: 'Hello, Popover!',
 });
 
 // Manually control the popover
@@ -37,24 +38,39 @@ popover.hide();
 popover.toggle();
 ```
 
-### HTML Structure
+### React Integration
 
-Make sure your HTML includes the target element:
+Use the `PopoverComponent` for integrating popovers within React applications.
 
-```html
-<button id="myButton">Toggle Popover</button>
-```
+#### Example
 
-### Customizing Position
+**App.tsx:**
 
-You can customize the position of the popover by specifying the `position` option:
+```tsx
+import React, { useRef, useEffect, useState } from 'react';
+import { PopoverComponent } from 'popover-js';
 
-```javascript
-const popover = new Popover({
-  target: button,
-  content: 'Hello, Popover!',
-  position: 'top' // Options: 'top', 'bottom', 'left', 'right'
-});
+const App: React.FC = () => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [target, setTarget] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setTarget(buttonRef.current);
+  }, []);
+
+  return (
+    <div>
+      <button ref={buttonRef}>Toggle Popover</button>
+      {target && (
+        <PopoverComponent target={target} content="Hello, Popover!">
+          {/* Additional JSX or components */}
+        </PopoverComponent>
+      )}
+    </div>
+  );
+};
+
+export default App;
 ```
 
 ## Development
@@ -82,7 +98,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License.
-
-## Author
-
-[Carl Handy](https://handy.gy)

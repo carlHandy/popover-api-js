@@ -9,10 +9,12 @@ export default defineConfig({
       fileName: (format) => `popover-js.${format}.js`
     },
     rollupOptions: {
-      // Ensure external dependencies are not bundled into the library
-      external: [],
+      external: ['react', 'react-dom'],
       output: {
-        globals: {}
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        }
       }
     }
   }

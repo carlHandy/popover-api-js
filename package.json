@@ -1,19 +1,26 @@
 {
-  "name": "popover-api-js",
-  "version": "1.0.1",
+  "name": "react-popoverjs",
+  "version": "1.0.4",
   "type": "module",
   "author": "Carl Handy",
-  "description": "A customizable popover popup using the Popover API",
+  "description": "A react wrapper for the Popover browser API",
+  "main": "dist/popover-js.umd.js",
+  "module": "dist/popover-js.es.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsc",
     "preview": "vite preview",
     "test": "vitest"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/ui": "^1.6.0",
     "jsdom": "^24.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vitest": "^1.6.0"

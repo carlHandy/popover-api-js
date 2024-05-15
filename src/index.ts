@@ -1,2 +1,3 @@
-export { Popover } from './popover';
-export type { PopoverOptions } from './popover';
+import { Popover } from './popover';
+export { default as PopoverComponent } from './PopoverComponent';
+
