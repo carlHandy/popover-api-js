@@ -14,7 +14,9 @@ const PopoverComponent: React.FC<PopoverComponentProps> = ({ target, content, po
       popoverRef.current = new Popover({ target, content, position });
     }
     return () => {
-      popoverRef.current = null;
+      if (popoverRef.current) {
+        popoverRef.current = null;
+      }
     };
   }, [target, content, position]);
 

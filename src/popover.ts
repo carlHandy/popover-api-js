@@ -1,50 +1,38 @@
-import { PopoverOptions } from './interface/options';
-
-export class Popover {
+export interface PopoverOptions {
+  target: HTMLElement;
+  content: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+}
+class Popover {
   private target: HTMLElement;
-  private content: string;
-  private position: string;
+  private popover: HTMLElement;
 
   constructor(options: PopoverOptions) {
     this.target = options.target;
-    this.content = options.content;
-    this.position = options.position || 'bottom';
-    this.initializePopover();
+    this.popover = document.createElement('div');
+    this.popover.setAttribute('popover', 'auto');
+    this.popover.innerText = options.content;
+    document.body.appendChild(this.popover);
+
+    this.target.setAttribute('popovertarget', this.popover.id);
+    this.addEventListeners();
   }
 
-  private initializePopover(): void {
-    const popover = document.createElement('div');
-    popover.className = `popover popover-${this.position}`;
-    popover.innerText = this.content;
-
-    this.target.appendChild(popover);
-    this.addEventListeners(popover);
-  }
-
-  private addEventListeners(popover: HTMLElement): void {
-    this.target.addEventListener('click', () => {
-      popover.classList.toggle('show');
-    });
+  private addEventListeners(): void {
+    this.target.addEventListener('click', () => this.toggle());
   }
 
   public show(): void {
-    const popover = this.target.querySelector('.popover') as HTMLElement;
-    if (popover) {
-      popover.classList.add('show');
-    }
+    this.popover.showPopover();
   }
 
   public hide(): void {
-    const popover = this.target.querySelector('.popover') as HTMLElement;
-    if (popover) {
-      popover.classList.remove('show');
-    }
+    this.popover.hidePopover();
   }
 
   public toggle(): void {
-    const popover = this.target.querySelector('.popover') as HTMLElement;
-    if (popover) {
-      popover.classList.toggle('show');
-    }
+    this.popover.togglePopover();
   }
 }
+
+export { Popover };
