@@ -30,6 +30,7 @@ const button = document.querySelector('#myButton');
 const popover = new Popover({
   target: button,
   content: 'Hello, Popover!',
+  position: 'top'
 });
 
 // Manually control the popover
@@ -62,7 +63,7 @@ const App: React.FC = () => {
     <div>
       <button ref={buttonRef}>Toggle Popover</button>
       {target && (
-        <PopoverComponent target={target} content="Hello, Popover!">
+        <PopoverComponent target={target} content="Hello, Popover!" position="top">
           {/* Additional JSX or components */}
         </PopoverComponent>
       )}
