@@ -14,7 +14,7 @@ A lightweight JavaScript/TypeScript library for creating and managing popovers i
 Install the package via npm:
 
 ```bash
-npm install popover-js
+npm install react-popoverjs
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npm install popover-js
 Import the `Popover` class and create a new popover instance:
 
 ```javascript
-import { Popover } from 'popover-js';
+import { Popover } from 'react-popoverjs';
 
 const button = document.querySelector('#myButton');
 const popover = new Popover({
@@ -48,7 +48,7 @@ Use the `PopoverComponent` for integrating popovers within React applications.
 
 ```tsx
 import React, { useRef, useEffect, useState } from 'react';
-import { PopoverComponent } from 'popover-js';
+import { PopoverComponent } from 'react-popoverjs';
 
 const App: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
