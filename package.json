@@ -1,6 +1,6 @@
 {
   "name": "popover-api-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "author": "Carl Handy",
   "description": "A customizable popover popup using the Popover API",
