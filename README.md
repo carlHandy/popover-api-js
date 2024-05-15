@@ -23,7 +23,7 @@ npm install popover-api-js
 Import the Popover class and create a new popover instance:
 
 ```javascript
-import { Popover } from 'popover-js';
+import { Popover } from 'popover-api-js';
 
 const button = document.querySelector('#myButton');
 const popover = new Popover({
