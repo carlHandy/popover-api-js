@@ -11,7 +11,8 @@
     "dev": "vite",
     "build": "vite build && tsc",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "deploy": "npm version patch && npm run build && npm publish"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
