@@ -2,6 +2,7 @@ export interface PopoverOptions {
   target: HTMLElement;
   content: string;
   position?: 'top' | 'bottom' | 'left' | 'right';
+  style?: Partial<CSSStyleDeclaration>;
 }
 class Popover {
   private target: HTMLElement;

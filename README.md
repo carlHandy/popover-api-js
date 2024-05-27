@@ -1,11 +1,12 @@
 # Popover JS
 
-A lightweight JavaScript/TypeScript library for creating and managing popovers in web applications. Compatible with React.
+A lightweight JavaScript/TypeScript library for creating and managing popovers in web applications built on top the [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) standard. Compatible with React.
 
 ## Features
 
 - Easy integration with any JS/TS project
 - Supports positioning popovers at the top, bottom, left, or right of the target element
+- Supports customizing the appearance of the popover with inline CSS
 - Simple API for showing, hiding, and toggling popovers
 - React component for seamless React integration
 
@@ -54,6 +55,10 @@ const popover = new Popover({
   target: button,
   content: 'Hello, Popover!',
   position: 'top',
+  style: {
+    backgroundColor: 'lightblue',
+    color: 'black',
+  },
 });
 
 // Manually control the popover
@@ -86,7 +91,7 @@ const App: React.FC = () => {
     <div style={{ padding: '20px' }}>
       <button ref={buttonRef}>Toggle Popover</button>
       {target && (
-        <PopoverComponent target={target} content="Hello, Popover!" position='bottom'>
+        <PopoverComponent target={target} content="Hello, Popover!" position='bottom' style={{ backgroundColor: 'lightblue', color: 'black' }}>
           <></> {/* Empty fragment as children */}
         </PopoverComponent>
       )}
