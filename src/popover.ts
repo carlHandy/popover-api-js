@@ -64,10 +64,6 @@ class Popover {
     this.target.addEventListener('mousedown', () => this.toggle());
   }
 
-  private removeEventListeners(): void {
-    this.target.removeEventListener('mousedown', this.toggle);
-  }
-
   public show(): void {
     if (!this.popover.parentNode) {
       document.body.appendChild(this.popover);
