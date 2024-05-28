@@ -64,20 +64,13 @@ class Popover {
     document.addEventListener('touchstart', this.outsideClickHandler);
   }
 
-  private removeEventListeners(): void {
-    this.target.removeEventListener('mousedown', this.toggleHandler);
-    this.target.removeEventListener('touchstart', this.toggleHandler);
-    document.removeEventListener('mousedown', this.outsideClickHandler);
-    document.removeEventListener('touchstart', this.outsideClickHandler);
-  }
-
   private toggleHandler = (event: Event): void => {
     event.stopPropagation();
     this.toggle();
   }
 
   private outsideClickHandler = (event: Event): void => {
-    if (!this.target.contains(event.target as Node)) {
+    if (!this.target.contains(event.target as Node) && !this.popover.contains(event.target as Node)) {
       this.hide();
     }
   }
