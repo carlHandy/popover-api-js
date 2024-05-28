@@ -13,8 +13,8 @@ A lightweight JavaScript/TypeScript library for creating and managing popovers i
 
 ## Demo
 
-[Live Demo](https://react-popoverjs-demo.pages.dev/)
-[CodeSandbox Demo](https://codesandbox.io/p/github/carlHandy/react-popoverjs-demo/main?file=%2Fsrc%2FApp.tsx)
+- [Live Demo](https://react-popoverjs-demo.pages.dev/)
+- [CodeSandbox Demo](https://codesandbox.io/p/github/carlHandy/react-popoverjs-demo/main?file=%2Fsrc%2FApp.tsx)
 
 ## Availabe Props
 
@@ -23,7 +23,6 @@ A lightweight JavaScript/TypeScript library for creating and managing popovers i
 - `position` - The position of the popover relative to the target element (optional default to bottom)
 - `offset` - The offset of the popover from the target element (optional)
 - `style` - The style of the popover (optional)
-- `isMarkdown` - A flag to indicate if the content is markdown (optional)
 
 ## Installation
 
@@ -98,10 +97,14 @@ import { PopoverComponent } from 'react-popoverjs';
 const App: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
-  const content: string = `Welcome to react-popoverjs!
-      Use this library to create popovers in your React applications.
-      You can customize the content, position, and style of the popovers.
-      It utilizes the standard [browser Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), and Popper.js for positioning, ensuring it is lightweight and fast.`;
+  const content: string = `
+    <div>
+      Welcome to react-popoverjs!<br />
+      Use this library to create popovers in your React applications.<br />
+      You can customize the content, position, and style of the popovers.<br />
+      It utilizes the standard <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API">browser Popover API</a>, and Popper.js for positioning, ensuring it is lightweight and fast.
+    </div>
+  `;
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -164,7 +167,7 @@ export default App;
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
+Contributions are welcome! Please open an issue or submit a pull request for any changes on our GitHub repository: [https://github.com/carlHandy/popover-api-js](https://github.com/carlHandy/popover-api-js).
 
 ## License
 
