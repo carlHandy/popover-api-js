@@ -1,6 +1,6 @@
 {
   "name": "react-popoverjs",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "type": "module",
   "author": "Carl Handy",
   "description": "A react wrapper for the Popover browser API",
