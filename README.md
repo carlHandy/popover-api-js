@@ -9,7 +9,7 @@ A lightweight JavaScript/TypeScript library for creating and managing popovers i
 - Supports customizing the appearance of the popover with inline CSS
 - Simple API for showing, hiding, and toggling popovers
 - React component for seamless React integration
-- Content can be markdown, HTML, or plain text
+- Content can be HTML, or plain text
 
 ## Demo
 

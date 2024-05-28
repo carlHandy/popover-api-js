@@ -1,5 +1,4 @@
 import { createPopper, Instance, Placement } from '@popperjs/core';
-import { marked } from 'marked';
 
 export interface PopoverOptions {
   target: HTMLElement;
@@ -7,7 +6,6 @@ export interface PopoverOptions {
   position?: Placement;
   style?: Partial<CSSStyleDeclaration>;
   offset?: [number, number]; // [skidding, distance]
-  isMarkdown?: boolean; // Optional flag to indicate if content is markdown
 }
 
 class Popover {
@@ -32,18 +30,7 @@ class Popover {
 
     // Handle different types of content
     if (typeof options.content === 'string') {
-      if (options.isMarkdown) {
-        const content = marked(options.content);
-        if (content instanceof Promise) {
-          content.then(resolvedContent => {
-            this.popover.innerHTML = resolvedContent;
-          });
-        } else {
-          this.popover.innerHTML = content;
-        }
-      } else {
-        this.popover.innerHTML = options.content;
-      }
+      this.popover.innerHTML = options.content;
     } else if (options.content instanceof HTMLElement) {
       this.popover.appendChild(options.content);
     }

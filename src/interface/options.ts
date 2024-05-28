@@ -3,5 +3,4 @@ export interface PopoverOptions {
     content: string | HTMLElement;
     position?: 'top' | 'bottom' | 'left' | 'right';
     style?: Partial<CSSStyleDeclaration>;
-    isMarkdown?: boolean;
 }
