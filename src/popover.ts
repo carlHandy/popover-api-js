@@ -60,8 +60,6 @@ class Popover {
   private addEventListeners(): void {
     this.target.addEventListener('mousedown', this.toggleHandler);
     this.target.addEventListener('touchstart', this.toggleHandler);
-    document.addEventListener('mousedown', this.outsideClickHandler);
-    document.addEventListener('touchstart', this.outsideClickHandler);
   }
 
   private toggleHandler = (event: Event): void => {
@@ -82,6 +80,9 @@ class Popover {
     this.popover.style.display = 'block';
     this.popover.setAttribute('aria-hidden', 'false');
     this.createPopperInstance(); // Create or update Popper instance on show
+
+    // Add event listener for outside clicks
+    document.addEventListener('mousedown', this.outsideClickHandler);
   }
 
   public hide(): void {
@@ -92,6 +93,9 @@ class Popover {
         this.popperInstance.destroy();
         this.popperInstance = null;
       }
+
+      // Remove event listener for outside clicks
+      document.removeEventListener('mousedown', this.outsideClickHandler);
     }
   }
 
