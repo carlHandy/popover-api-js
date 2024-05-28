@@ -14,7 +14,7 @@ class Popover {
     }
     this.target = options.target;
     this.popover = document.createElement('div');
-    this.popover.id = `popover-${Math.random().toString(36).substr(2, 9)}`;
+    this.popover.id = `popover-${Math.random().toString(36).substring(2, 11)}`;
     this.popover.setAttribute('popover', 'auto');
     this.popover.setAttribute('role', 'tooltip');
     this.popover.setAttribute('aria-hidden', 'true');
