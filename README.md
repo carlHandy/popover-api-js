@@ -9,6 +9,21 @@ A lightweight JavaScript/TypeScript library for creating and managing popovers i
 - Supports customizing the appearance of the popover with inline CSS
 - Simple API for showing, hiding, and toggling popovers
 - React component for seamless React integration
+- Content can be markdown, HTML, or plain text
+
+## Demo
+
+[Live Demo](https://react-popoverjs-demo.pages.dev/)
+[CodeSandbox Demo](https://codesandbox.io/p/github/carlHandy/react-popoverjs-demo/main?file=%2Fsrc%2FApp.tsx)
+
+## Availabe Props
+
+- `target` - The target element for the popover
+- `content` - The content of the popover
+- `position` - The position of the popover relative to the target element (optional default to bottom)
+- `offset` - The offset of the popover from the target element (optional)
+- `style` - The style of the popover (optional)
+- `isMarkdown` - A flag to indicate if the content is markdown (optional)
 
 ## Installation
 
@@ -54,8 +69,8 @@ const button = document.querySelector('#myButton');
 const popover = new Popover({
   target: button,
   content: 'Hello, Popover!',
-  position: 'top',
-  offset: [0, 16],
+  position: 'bottom', // Default position
+  offset: [0, 16], // Default offset of 16px
   style: {
     backgroundColor: 'lightblue',
     color: 'black',
@@ -83,18 +98,26 @@ import { PopoverComponent } from 'react-popoverjs';
 const App: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
+  const content: string = `Welcome to react-popoverjs!
+      Use this library to create popovers in your React applications.
+      You can customize the content, position, and style of the popovers.
+      It utilizes the standard [browser Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API), and Popper.js for positioning, ensuring it is lightweight and fast.`;
 
   useEffect(() => {
-    setTarget(buttonRef.current);
+    if (buttonRef.current) {
+      setTarget(buttonRef.current);
+    } else {
+      console.log('Button ref is not attached yet.');
+    }
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <button ref={buttonRef}>Toggle Popover</button>
+    <div style={styles.container}>
+      <button ref={buttonRef} style={styles.button}>Toggle Popover</button>
       {target && (
-        <PopoverComponent target={target} content="Hello, Popover!" 
-        position='bottom' style={{ backgroundColor: 'lightblue', color: 'black' }} 
-        offset={[0, 16]}>
+        <PopoverComponent 
+          target={target} content={content} position='bottom'
+          style={styles.popover}>
           <></> {/* Empty fragment as children */}
         </PopoverComponent>
       )}
@@ -102,25 +125,41 @@ const App: React.FC = () => {
   );
 };
 
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    padding: '10px',
+    boxSizing: 'border-box' as 'border-box',
+  },
+  button: {
+    padding: '10px 20px',
+    fontSize: '16px',
+  },
+  popover: {
+    backgroundColor: 'white',
+    color: 'black',
+    border: '1px solid black',
+  },
+  '@media (max-width: 600px)': {
+    container: {
+      flexDirection: 'column' as 'column',
+      height: 'auto',
+    },
+    button: {
+      width: '100%',
+      marginBottom: '10px',
+    },
+    popover: {
+      marginLeft: '0',
+      marginTop: '10px',
+    },
+  },
+};
+
 export default App;
-```
-
-## Development
-
-### Building the Library
-
-To build the library, run the following command:
-
-```bash
-npm run build
-```
-
-### Running Tests
-
-To run the tests using Vitest, execute:
-
-```bash
-npm run test
 ```
 
 ## Contributing
