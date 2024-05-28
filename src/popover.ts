@@ -25,6 +25,8 @@ class Popover {
       Object.assign(this.popover.style, options.style);
     }
 
+    document.body.appendChild(this.popover); // Ensure popover is in the DOM
+
     // Set position based on the target element and specified position
     if (options.position) {
       this.setPosition(options.position);
@@ -40,24 +42,43 @@ class Popover {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
+    let top = 0;
+    let left = 0;
+
     switch (position) {
       case 'top':
-        this.popover.style.top = `${Math.max(0, targetRect.top - popoverRect.height)}px`;
-        this.popover.style.left = `${Math.max(0, Math.min(viewportWidth - popoverRect.width, targetRect.left))}px`;
+        top = targetRect.top - popoverRect.height;
+        left = targetRect.left + (targetRect.width - popoverRect.width) / 2;
         break;
       case 'bottom':
-        this.popover.style.top = `${Math.min(viewportHeight - popoverRect.height, targetRect.bottom)}px`;
-        this.popover.style.left = `${Math.max(0, Math.min(viewportWidth - popoverRect.width, targetRect.left))}px`;
+        top = targetRect.bottom;
+        left = targetRect.left + (targetRect.width - popoverRect.width) / 2;
         break;
       case 'left':
-        this.popover.style.top = `${Math.max(0, Math.min(viewportHeight - popoverRect.height, targetRect.top))}px`;
-        this.popover.style.left = `${Math.max(0, targetRect.left - popoverRect.width)}px`;
+        top = targetRect.top + (targetRect.height - popoverRect.height) / 2;
+        left = targetRect.left - popoverRect.width;
         break;
       case 'right':
-        this.popover.style.top = `${Math.max(0, Math.min(viewportHeight - popoverRect.height, targetRect.top))}px`;
-        this.popover.style.left = `${Math.min(viewportWidth - popoverRect.width, targetRect.right)}px`;
+        top = targetRect.top + (targetRect.height - popoverRect.height) / 2;
+        left = targetRect.right;
         break;
     }
+
+    // Adjust position to keep the popover within the viewport
+    if (top < 0) {
+      top = targetRect.bottom;
+    } else if (top + popoverRect.height > viewportHeight) {
+      top = targetRect.top - popoverRect.height;
+    }
+
+    if (left < 0) {
+      left = targetRect.right;
+    } else if (left + popoverRect.width > viewportWidth) {
+      left = targetRect.left - popoverRect.width;
+    }
+
+    this.popover.style.top = `${top}px`;
+    this.popover.style.left = `${left}px`;
   }
 
   private addEventListeners(): void {
@@ -70,6 +91,7 @@ class Popover {
     }
     this.popover.style.display = 'block';
     this.popover.setAttribute('aria-hidden', 'false');
+    this.setPosition(this.popover.getAttribute('data-position') as 'top' | 'bottom' | 'left' | 'right'); // Update position on show
   }
 
   public hide(): void {
