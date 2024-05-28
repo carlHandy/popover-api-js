@@ -21,7 +21,7 @@ class Popover {
     }
     this.target = options.target;
     this.position = options.position || 'bottom';
-    this.offset = options.offset || [0, 8]; // Default offset of 8px
+    this.offset = options.offset || [0, 16]; // Default offset of 16px
     this.popover = document.createElement('div');
     this.popover.id = `popover-${Math.random().toString(36).substring(2, 11)}`;
     this.popover.setAttribute('popover', 'auto');
@@ -59,7 +59,6 @@ class Popover {
 
   private addEventListeners(): void {
     this.target.addEventListener('mousedown', this.toggleHandler);
-    this.target.addEventListener('touchstart', this.toggleHandler);
   }
 
   private toggleHandler = (event: Event): void => {
