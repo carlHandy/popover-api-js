@@ -5,6 +5,7 @@ export interface PopoverOptions {
   content: string;
   position?: Placement;
   style?: Partial<CSSStyleDeclaration>;
+  offset?: [number, number]; // [skidding, distance]
 }
 
 class Popover {
@@ -12,6 +13,7 @@ class Popover {
   private popover: HTMLElement;
   private position: Placement;
   private popperInstance: Instance | null = null;
+  private offset: [number, number];
 
   constructor(options: PopoverOptions) {
     if (!options.target) {
@@ -19,6 +21,7 @@ class Popover {
     }
     this.target = options.target;
     this.position = options.position || 'bottom';
+    this.offset = options.offset || [0, 8]; // Default offset of 8px
     this.popover = document.createElement('div');
     this.popover.id = `popover-${Math.random().toString(36).substring(2, 11)}`;
     this.popover.setAttribute('popover', 'auto');
@@ -43,11 +46,40 @@ class Popover {
     }
     this.popperInstance = createPopper(this.target, this.popover, {
       placement: this.position,
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: this.offset,
+          },
+        },
+      ],
     });
   }
 
   private addEventListeners(): void {
-    this.target.addEventListener('mousedown', () => this.toggle());
+    this.target.addEventListener('mousedown', this.toggleHandler);
+    this.target.addEventListener('touchstart', this.toggleHandler);
+    document.addEventListener('mousedown', this.outsideClickHandler);
+    document.addEventListener('touchstart', this.outsideClickHandler);
+  }
+
+  private removeEventListeners(): void {
+    this.target.removeEventListener('mousedown', this.toggleHandler);
+    this.target.removeEventListener('touchstart', this.toggleHandler);
+    document.removeEventListener('mousedown', this.outsideClickHandler);
+    document.removeEventListener('touchstart', this.outsideClickHandler);
+  }
+
+  private toggleHandler = (event: Event): void => {
+    event.stopPropagation();
+    this.toggle();
+  }
+
+  private outsideClickHandler = (event: Event): void => {
+    if (!this.target.contains(event.target as Node)) {
+      this.hide();
+    }
   }
 
   public show(): void {
