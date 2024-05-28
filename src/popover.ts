@@ -77,11 +77,18 @@ class Popover {
   }
 
   public hide(): void {
-    this.popover.hidePopover();
+    if (this.popover.parentNode) {
+      this.popover.style.display = 'none';
+      this.popover.setAttribute('aria-hidden', 'true');
+    }
   }
 
   public toggle(): void {
-    this.popover.togglePopover();
+    if (this.popover.style.display === 'block') {
+      this.hide();
+    } else {
+      this.show();
+    }
   }
 }
 
