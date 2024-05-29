@@ -1,3 +1,8 @@
+/**
+ * @module Popover
+ * Defines the Popover class and its associated options.
+ * Utilizes Popper.js for positioning and provides methods to show, hide, and toggle popovers.
+ */
 import { createPopper, Instance, Placement } from '@popperjs/core';
 
 export interface PopoverOptions {

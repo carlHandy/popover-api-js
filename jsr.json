@@ -1,6 +1,6 @@
 {
     "name": "@shirtlessdev/react-popoverjs",
-    "version": "1.1.9",
+    "version": "1.1.10",
     "exports": {
         "./src/index.ts": "./src/index.ts",
         "./src/popover.ts": "./src/popover.ts"

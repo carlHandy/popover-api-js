@@ -1,3 +1,8 @@
+/**
+ * @module PopoverComponent
+ * React component for integrating popovers within React applications.
+ * Wraps children elements with a popover using the Popover class.
+ */
 import React, { useEffect, useRef } from 'react';
 import { Popover } from './popover';
 import { PopoverOptions } from './interface/options';
