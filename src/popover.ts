@@ -15,6 +15,10 @@ class Popover {
   private popperInstance: Instance | null = null;
   private offset: [number, number];
 
+  /**
+   * Creates an instance of Popover.
+   * @param {PopoverOptions} options - The options for the popover.
+   */
   constructor(options: PopoverOptions) {
     if (!options.target) {
       throw new Error('Popover target element is not provided or invalid.');
@@ -46,6 +50,10 @@ class Popover {
     this.addEventListeners();
   }
 
+  /**
+   * Creates or updates the Popper instance.
+   * @private
+   */
   private createPopperInstance(): void {
     if (this.popperInstance) {
       this.popperInstance.destroy();
@@ -63,21 +71,38 @@ class Popover {
     });
   }
 
+  /**
+   * Adds event listeners to the target element.
+   * @private
+   */
   private addEventListeners(): void {
     this.target.addEventListener('mousedown', this.toggleHandler);
   }
 
+  /**
+   * Handles the toggle event.
+   * @param {Event} event - The event object.
+   * @private
+   */
   private toggleHandler = (event: Event): void => {
     event.stopPropagation();
     this.toggle();
   }
 
+  /**
+   * Handles clicks outside the popover to hide it.
+   * @param {Event} event - The event object.
+   * @private
+   */
   private outsideClickHandler = (event: Event): void => {
     if (!this.target.contains(event.target as Node) && !this.popover.contains(event.target as Node)) {
       this.hide();
     }
   }
 
+  /**
+   * Shows the popover.
+   */
   public show(): void {
     if (!this.popover.parentNode) {
       document.body.appendChild(this.popover);
@@ -90,6 +115,9 @@ class Popover {
     document.addEventListener('mousedown', this.outsideClickHandler);
   }
 
+  /**
+   * Hides the popover.
+   */
   public hide(): void {
     if (this.popover.parentNode) {
       this.popover.style.display = 'none';
@@ -104,6 +132,9 @@ class Popover {
     }
   }
 
+  /**
+   * Toggles the visibility of the popover.
+   */
   public toggle(): void {
     if (this.popover.style.display === 'block') {
       this.hide();
