@@ -3,9 +3,7 @@
     "version": "1.1.9",
     "exports": {
         "./src/index.ts": "./src/index.ts",
-        "./src/popover.ts": "./src/popover.ts",
-        "./dist/index.js": "./dist/index.js",
-        "./dist/popover.js": "./dist/popover.js"
+        "./src/popover.ts": "./src/popover.ts"
     },
     "types": {
         "./dist/types/index.d.ts": "./dist/types/index.d.ts",
