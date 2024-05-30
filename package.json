@@ -1,10 +1,19 @@
 {
   "name": "react-popoverjs",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "type": "module",
   "author": "Carl Handy",
   "license": "MIT",
-  "keywords": ["react", "popover", "popoverjs", "popper", "tooltip", "tooltipjs", "modal", "modaljs"],
+  "keywords": [
+    "react",
+    "popover",
+    "popoverjs",
+    "popper",
+    "tooltip",
+    "tooltipjs",
+    "modal",
+    "modaljs"
+  ],
   "description": "A react wrapper for the Popover browser API",
   "main": "dist/popover-js.umd.js",
   "module": "dist/popover-js.es.js",
